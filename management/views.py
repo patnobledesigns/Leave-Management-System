@@ -20,7 +20,7 @@ def index(request):
 @login_required(login_url='login')
 def loginHome(request):
     
-       return render(request, 'management/home.html', {})
+       return render(request, 'management/home.html', {'title': 'Login'})
 
 
 @login_required(login_url='login')
@@ -39,7 +39,8 @@ def profile(request):
         
     context  = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form, 
+        'title': 'My Profile'
     }
     
     return render(request, 'management/profile.html', context)
@@ -72,7 +73,8 @@ def approval(request):
     leave = LeaveDetail.objects.all()
     
     context = {
-        'leave': leave
+        'leave': leave,
+        'title': 'Approve'
     }
     return render(request, 'management/approve.html', context)
 
