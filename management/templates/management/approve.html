@@ -1,0 +1,46 @@
+{% extends 'management/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+<div class="row mt-2">
+		<div class="card card-body">
+        <legend class="mb-3"><h3 style="color:black;">Approve Leave</h3></legend>
+        <div class="table-responsive">
+			<table class="table table-bordered table-striped">
+            <thead class="bg-primary">
+				<tr>
+					<th>Name</th>
+					<th>Reason</th>
+					<th>Leave Type</th>
+					<th>Begin Date</th>
+					<th>End Date</th>
+					<th>Requested Days</th>
+					<th>Approve</th>
+					<th>Decline</th>
+				</tr>
+                </thead>
+
+				 <tbody>
+                 {% for leaves in leave %}
+				<tr>
+					<td>{{ leaves.author.first_name }} {{ leaves.author.last_name }}</td>
+					<td>{{ leaves.Reason }}</td>
+					<td>{{ leaves.leave_type }}</td>
+					<td>{{ leaves.Begin_Date }}</td>
+					<td>{{ leaves.End_Date }}</td>
+					<td>{{ leaves.Requesting_Days }}</td>
+					<td><a class="btn btn-sm btn-info" href="{% url 'approved' leaves.id %}">Approve</a></td>
+					<td><a class="btn btn-sm btn-danger" href="{% url 'declined' leaves.id %}">Decline</a></td>
+                </tr>
+                {% endfor %}
+				
+                </tbody>
+
+			</table>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
